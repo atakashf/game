@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake and Ladder Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Snakes and Ladders</h1>
+      <div class="subtitle">
+        A Classic Board Game - Roll the dice and race to the finish!
+      </div>
+    </header>
+
+    <div class="game-container">
+      <div class="board-container">
+        <div class="game-board" id="gameBoard"></div>
+      </div>
+
+      <div class="controls-panel">
+        <div class="dice-container">
+          <div class="dice" id="dice">6</div>
+          <button id="rollBtn">Roll Dice</button>
+        </div>
+
+        <div class="player-info">
+          <div class="player player1 active" id="player1">
+            <div class="player-icon"></div>
+            <div>
+              <div class="player-name">Player 1</div>
+              <div class="player-position">Position: 1</div>
+            </div>
+          </div>
+
+          <div class="player player2" id="player2">
+            <div class="player-icon"></div>
+            <div>
+              <div class="player-name">Player 2</div>
+              <div class="player-position">Position: 1</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-status" id="gameStatus">
+          Player 1's turn. Roll the dice!
+        </div>
+
+        <button id="resetBtn">Reset Game</button>
+      </div>
+    </div>
+
+    <div class="rules">
+      <h2>How to Play</h2>
+      <ul>
+        <li>Players take turns to roll the dice and move their token.</li>
+        <li>If you land on the bottom of a ladder, climb up to the top!</li>
+        <li>If you land on the head of a snake, slide down to its tail.</li>
+        <li>The first player to reach square 100 wins the game.</li>
+        <li>You must roll the exact number to land on 100.</li>
+      </ul>
+
+      <div class="snake-ladder-info">
+        <div class="info-item">
+          <div class="ladder-icon">▲</div>
+          <div>Ladder: Move Up</div>
+        </div>
+        <div class="info-item">
+          <div class="snake-icon">▼</div>
+          <div>Snake: Move Down</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="winning-animation" id="winAnimation">   
+      <div class="win-text" id="winText">Player 1 Wins!</div>
+      <button id="playAgainBtn">Play Again</button>
+    </div>
+    <audio id="diceSound" src="dice-142528.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+  </body>
+</html>

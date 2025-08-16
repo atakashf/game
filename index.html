@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Rock Scissors</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #result {
+            margin: 20px;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #computer,
+        #player {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 20px;
+            text-align: center;
+        }
+
+        img {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="player">
+        <h1>Player</h1>
+        <img src="assets/images/paper.jpg" alt="paper" id="imagePaper" style="width: 300px; height: 300px;">
+        <img src="assets/images/rock.jpg" alt="rock" id="imageRock" style="width: 300px; height: 300px;">
+        <img src="assets/images/scissor.jpg" alt="scissors" id="imageScissors" style="width: 300px; height: 300px;">
+    </div>
+    <div id="result">
+        <h1 id="resultText">Vs</h1>
+    </div>
+    <div id="computer">
+        <h1>Computer</h1>
+        <img src="assets/images/paper.jpg" alt="paper" id="imgComputerPaper" style="width: 300px; height: 300px;">
+        <img src="assets/images/rock.jpg" alt="rock" id="imgComputerRock" style="width: 300px; height: 300px;">
+        <img src="assets/images/scissor.jpg" alt="scissors" id="imgComputerScissors"
+            style="width: 300px; height: 300px;">
+    </div>
+
+</body>
+
+<script>
+    var imagePaper = document.getElementById("imagePaper");
+    var imageRock = document.getElementById("imageRock");
+    var imageScissors = document.getElementById("imageScissors");
+
+    imagePaper.addEventListener("click", function () {
+        playGame("paper");
+    });
+    imageRock.addEventListener("click", function () {
+        playGame("rock");
+    });
+    imageScissors.addEventListener("click", function () {
+        playGame("scissors");
+    });
+
+    function playGame(playerChoice) {
+        var choices = ["rock", "paper", "scissors"];
+        var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        var resultText = document.getElementById("resultText");
+        if (playerChoice === computerChoice) {
+            resultText.style.fontSize = "24px";
+            resultText.textContent = "It's a tie! You both chose " + playerChoice + ".";
+        } else if (
+            (playerChoice === "rock" && computerChoice === "scissors") ||
+            (playerChoice === "paper" && computerChoice === "rock") ||
+            (playerChoice === "scissors" && computerChoice === "paper")
+        ) {
+            resultText.style.fontSize = "24px";
+            resultText.textContent = "You win! You chose " + playerChoice + " and the computer chose " +
+                computerChoice + ".";
+        } else {
+            resultText.style.fontSize = "24px";
+            resultText.textContent = "You lose! You chose " + playerChoice + " and the computer chose " +
+                computerChoice + ".";
+        }
+
+        var playerImages = document.querySelectorAll("#player img");
+        playerImages.forEach(function (img) {
+            if (img.alt !== playerChoice) {
+                img.style.display = "none";
+            }
+        });
+
+        var computerImages = document.querySelectorAll("#computer img");
+        computerImages.forEach(function (img) {
+            if (img.alt !== computerChoice) {
+                img.style.display = "none";
+            }
+        });
+
+        var button = document.createElement("button");
+        button.textContent = "Play Again";
+        button.addEventListener("click", function () {
+            location.reload();
+        });
+        document.body.appendChild(button);
+    }
+</script>
+
+</html>
